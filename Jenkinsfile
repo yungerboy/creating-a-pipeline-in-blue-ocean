@@ -1,3 +1,5 @@
+def  version
+
 pipeline {
   agent {
     docker {
@@ -24,8 +26,12 @@ pipeline {
       agent any
       steps {
         sh './jenkins/scripts/deliver.sh'
-        input(message: 'Please check whether OK', submitterParameter: 'VERSION')
+		script {
+		   version = input(message: 'Please check whether OK', submitterParameter: 'VERSION')
+		}
+     
         sh './jenkins/scripts/kill.sh'
+		echo "This is User Input Version $version "
       }
     }
   }
