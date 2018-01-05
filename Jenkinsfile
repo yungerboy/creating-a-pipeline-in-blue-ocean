@@ -1,4 +1,4 @@
-def  version
+def  paramMap
 
 pipeline {
   agent {
@@ -27,11 +27,11 @@ pipeline {
       steps {
         sh './jenkins/scripts/deliver.sh'
 		script {
-		   version = input(message: 'Please check whether OK', submitterParameter: 'VERSION')
+		   paramMap = input(message: 'Please check whether OK', parameters: [string(defaultValue: '', description: '版本号', name: 'VERSION')], submitterParameter: 'USER')
 		}
      
         sh './jenkins/scripts/kill.sh'
-		echo "This is User Input Version $version "
+		echo "This is User Input Version $paramMap['VERSION'], user is  $paramMap['USER']"
       }
     }
   }
