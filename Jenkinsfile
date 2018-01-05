@@ -31,7 +31,7 @@ pipeline {
 		}
      
         sh './jenkins/scripts/kill.sh'
-		echo "This is User Input Version $paramMap['VERSION'], user is  $paramMap['USER']"
+		echo "This is User Input Version ${paramMap['VERSION']}, user is  ${paramMap['USER']}"
       }
     }
   }
