@@ -21,8 +21,11 @@ pipeline {
       }
     }
     stage('Delivery') {
+      agent any
       steps {
-        sh './jenkins/scripts/delivery.sh'
+        sh './jenkins/scripts/deliver.sh'
+        input 'Please check whether OK'
+        sh './jenkins/scripts/kill.sh'
       }
     }
   }
