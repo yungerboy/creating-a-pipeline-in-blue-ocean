@@ -24,7 +24,7 @@ pipeline {
       agent any
       steps {
         sh './jenkins/scripts/deliver.sh'
-        input 'Please check whether OK'
+        input(message: 'Please check whether OK', submitterParameter: 'VERSION')
         sh './jenkins/scripts/kill.sh'
       }
     }
